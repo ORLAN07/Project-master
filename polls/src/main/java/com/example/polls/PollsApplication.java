@@ -9,6 +9,7 @@ import java.util.TimeZone;
 @EntityScan(basePackageClasses = {
 		PollsApplication.class,
 		Jsr310JpaConverters.class
+
 })
 public class PollsApplication {
 
