@@ -1,9 +1,8 @@
 package com.example.polls.model;
 
-import org.hibernate.annotations.ManyToAny;
+import com.example.polls.model.audit.DateAudit;
 import org.hibernate.annotations.NaturalId;
 
-import javax.naming.Name;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -20,7 +19,7 @@ import java.util.Set;
                 "email"
         })
 })
-public class User extends DateAudit{
+public class User extends DateAudit {
 
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
