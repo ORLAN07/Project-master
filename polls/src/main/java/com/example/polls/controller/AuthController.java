@@ -50,6 +50,7 @@ public class AuthController {
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest){
+        System.out.println("Esta en el metodo de iniciar session con usuario ========>>>>>>>>>>>");
 
         Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -57,7 +58,7 @@ public class AuthController {
                             loginRequest.getPassword()
                     )
         );
-
+        System.out.println("Esta en el metodo de iniciar session con usuario ========>>>>>>>>>>>");
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String jwt = tokenProvider.generateToken(authentication);
@@ -67,6 +68,8 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest){
+        System.out.println("Esta en el metodo de registrar usuario ========>>>>>>>>>>>");
+        System.out.println("Esta en el metodo de registrar usuario ========>>>>>>>>>>>" + signUpRequest.getUsername());
         if(userRepository.existsByUsername(signUpRequest.getUsername())){
             return new ResponseEntity(new ApiResponse(false, "Username is already taken!!!"), HttpStatus.BAD_REQUEST);
         }
@@ -77,6 +80,7 @@ public class AuthController {
 
         User user = new User(signUpRequest.getName(), signUpRequest.getUsername(), signUpRequest.getEmail(), signUpRequest.getPassword());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        System.out.println("Convierte la clave en una secuencia de chart's");
 
         Role userRole = roleRepository.findByName(RoleName.ROLE_USER).orElseThrow(() -> new AppException("User Role not set."));
 

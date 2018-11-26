@@ -35,6 +35,13 @@ public class UserPrincipal implements UserDetails {
         this.email = email;
         this.password = password;
         this.authorities = authorities;
+
+        System.out.println("id " + id);
+        System.out.println("name " + name);
+        System.out.println("username " + username);
+        System.out.println("email "+ email);
+        System.out.println("password " + password);
+        System.out.println("authorities " + authorities);
     }
 
 
